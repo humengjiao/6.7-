@@ -48,20 +48,36 @@
 		   		  var len=16;
 		   	    var simg='';
 		   	    $winw=$(window).width();
-		   	    var tw=$winw/4;
+		   	    var margin=2;
+		   	    var tw=($winw-margin*3)/4;
+		   	    
+		   	    
 		   	   var  $curindex=0;
 		   	      function show(){
-			   	      	for(var i=0;i<=15;i++){			   	     	
-			   	     	simg+='<li style="width:'+tw+'px;height:'+tw+'px"><canvas id=can'+i+'></canvas></li>';
+			   	      	for(var i=0;i<=15;i++){
+			   	     	 if((i+1)%4==0){
+			   	     	 	margin=0;
+			   	     	 }
+			   	     	 else{
+			   	     	 	margin=2;
+			   	     	 	
+			   	     	 }
+			   	     	simg+='<li style="width:'+tw+'px;height:'+tw+'px;margin-right:'+margin+'px;margin-bottom:'+margin+'px"><canvas id=can'+i+'></canvas></li>';
+			   	  
 			   	     	var t=new Image;
 			   	     	t.index=i;
 			   	     	t.src="img/"+i+".jpg";
 			   	     	t.onload=function(){
-			   	     		var ogc=$("#can"+this.index)[0].getContext("2d");
-			   	     		ogc.drawImage(this,0,0,t.width,t.height);
+			   	     		var ele = $("#can"+this.index)[0];
+			   	     		
+			   	     		if(ele.offsetHeight<tw){
+			   	     		    ele.style.height="100%";
+			   	     		}
+			   	     		var ogc=ele.getContext("2d");
+			   	     		ogc.drawImage(this,0,0,tw,tw);
 			   	     	}
 			   	     }
-			   	     	
+			   	     	alert(simg);
 			   	     $(".imagelist").html(simg);
 			   	     $(".imagelist").on("tap","li",function(){
 			   	     	   $("#large").show();
@@ -114,7 +130,7 @@
 		   	     	   	   
 		   	     	   	    var curw=tw*hsc;
 		   	     	   	    var curh=th*wsc;
-		   	     	   	   
+		   	     	   	    console.log(curw,curh,ww,wh,tw,th,wsc,hsc);
 		   	     	   	    if(tw>th){  //横板
 		   	     	   	    	 $("#largeImage").css({
 		   	     	   	    	   	width:'100%',
@@ -137,7 +153,14 @@
 		   	     	   	    
 		   	     	   }
 		   	     }
-
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
 		   	})
 		   	   
 		   </script>
