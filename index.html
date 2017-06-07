@@ -51,10 +51,8 @@
 		   	    var tw=$winw/4;
 		   	   var  $curindex=0;
 		   	      function show(){
-			   	      	for(var i=0;i<=15;i++){
-			   	     	
+			   	      	for(var i=0;i<=15;i++){			   	     	
 			   	     	simg+='<li style="width:'+tw+'px;height:'+tw+'px"><canvas id=can'+i+'></canvas></li>';
-			   	  
 			   	     	var t=new Image;
 			   	     	t.index=i;
 			   	     	t.src="img/"+i+".jpg";
@@ -63,7 +61,7 @@
 			   	     		ogc.drawImage(this,0,0,t.width,t.height);
 			   	     	}
 			   	     }
-			   	     	alert(simg);
+			   	     	
 			   	     $(".imagelist").html(simg);
 			   	     $(".imagelist").on("tap","li",function(){
 			   	     	   $("#large").show();
